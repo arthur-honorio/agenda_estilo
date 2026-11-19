@@ -1,13 +1,21 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect, type ReactNode } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { IconeAgenda, IconeCadeado, IconeCarteira, IconeMais } from './Icones'
 
-const abas = [
-  { para: '/', rotulo: 'Agenda', icone: '📅' },
-  { para: '/novo', rotulo: 'Novo', icone: '＋' },
-  { para: '/carteira', rotulo: 'Carteira', icone: '👛' },
-  { para: '/dados', rotulo: 'Meus dados', icone: '🔒' },
+const abas: { para: string; rotulo: string; icone: ReactNode }[] = [
+  { para: '/', rotulo: 'Agenda', icone: <IconeAgenda /> },
+  { para: '/novo', rotulo: 'Novo', icone: <IconeMais /> },
+  { para: '/carteira', rotulo: 'Carteira', icone: <IconeCarteira /> },
+  { para: '/dados', rotulo: 'Meus dados', icone: <IconeCadeado /> },
 ]
 
 export function Layout() {
+  const { pathname } = useLocation()
+  // Cada tela nova começa do topo
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
   return (
     <div className="app">
       <header className="topo">
@@ -21,9 +29,7 @@ export function Layout() {
       <nav className="abas" aria-label="Navegação principal">
         {abas.map((aba) => (
           <NavLink key={aba.para} to={aba.para} end className="aba">
-            <span className="aba-icone" aria-hidden="true">
-              {aba.icone}
-            </span>
+            {aba.icone}
             <span>{aba.rotulo}</span>
           </NavLink>
         ))}
