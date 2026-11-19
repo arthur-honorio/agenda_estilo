@@ -3,7 +3,7 @@
 # Dependências: docs/relatorio/scripts/requirements.txt
 import os
 
-VERSAO = 4
+VERSAO = 5
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RELATORIO = os.path.dirname(AQUI)
 PRINTS = os.path.join(RELATORIO, "..", "pesquisa", "brainstorm")
@@ -20,7 +20,7 @@ s = []
 cap_t = ParagraphStyle("ct", fontName="SB", fontSize=34, leading=40, textColor=ROSA, alignment=TA_CENTER)
 cap_s = ParagraphStyle("cs", fontName="S", fontSize=13, leading=18, textColor=CINZA, alignment=TA_CENTER)
 cap_e = ParagraphStyle("ce", fontName="S", fontSize=11, leading=15, textColor=CINZA, alignment=TA_CENTER)
-s += [Spacer(1, 3.2 * cm), P("Agenda Bela", cap_t), Spacer(1, 0.4 * cm),
+s += [Spacer(1, 3.2 * cm), P("Agenda Estilo", cap_t), Spacer(1, 0.4 * cm),
       P("Agenda, deslocamento e financeiro para profissionais<br/>da beleza que atendem a domicílio", cap_s),
       Spacer(1, 1.1 * cm),
       P("F108 – Desenvolvimento de Projeto Aplicado<br/>Atividade de Extensão – ODS 8: Trabalho Decente e Crescimento Econômico", cap_s),
@@ -64,7 +64,7 @@ s += [P("1. Descrição do Problema", h1), P("1.1 Contexto e relevância para a 
         "trabalho produtivo e renda digna (meta 8.5). Para a profissional autônoma que atende a domicílio, trabalho "
         "digno passa por organizar a própria agenda, planejar os deslocamentos, não perder clientes e saber quanto "
         "realmente ganha em cada atendimento."),
-      P("O <b>Agenda Bela</b> é um site <i>mobile first</i> que une três serviços em um só lugar: "
+      P("O <b>Agenda Estilo</b> (nome inicial: Agenda Bela) é um site <i>mobile first</i> que une três serviços em um só lugar: "
         "<b>agendamento</b> (data, hora, duração e local), <b>planejamento de deslocamento</b> (rota e hora de chamar "
         "o transporte) e <b>controle financeiro</b> (valor, sinal recebido, custo do deslocamento e lucro). Agenda, "
         "controle financeiro e navegação já existem separados; o diferencial é reuni-los num único fluxo pensado "
@@ -294,7 +294,7 @@ s += [P("3. Documentação das Funcionalidades (histórias de usuário)", h1),
            "Como profissional autônoma, quero saber onde meus dados ficam e poder apagá-los para ter controle sobre "
            "as informações das minhas clientes.",
            "tela com o aviso de privacidade (Anexo B); apagar tudo exige confirmação; nenhum dado vai para servidor "
-           "do Agenda Bela."),
+           "do Agenda Estilo."),
       P("3.5 Definição de pronto (Definition of Done) da equipe", h2),
       P("Uma história só vai para a coluna <b>Concluído</b> do quadro quando:")]
 s += B(["a tela correspondente está implementada no site e publicada no link de teste;",
@@ -462,7 +462,7 @@ s += [P("5. Métricas para Avaliar o MVP", h1),
          ["M8 – Nota de usabilidade (SUS)", "Satisfação", "Medir a usabilidade geral com questionário padronizado.",
           "Todas", "Questionário SUS (0 a 100).", "≥ 68"],
          ["M9 – Intenção de uso", "Satisfação", "Estimar a adoção real (H6).", "Todas",
-          "% que marca 4 ou 5 em \"Eu usaria o Agenda Bela no meu trabalho\".", "≥ 70%"]],
+          "% que marca 4 ou 5 em \"Eu usaria o Agenda Estilo no meu trabalho\".", "≥ 70%"]],
         [2.6 * cm, 2.6 * cm, 3.1 * cm, 1.9 * cm, 3.3 * cm, W - 13.5 * cm]),
       Spacer(1, 6),
       P("5.4 Coleta, frequência e decisão", h2),
@@ -488,7 +488,7 @@ s += [P("6. Planejamento de Sprints, Monitoramento e Comunicação", h1),
       P("6.1 Escolha da metodologia", h2),
       NOTA("<b>Disciplina (ML1 §2 e ML3 §2):</b> a metodologia deve ser escolhida pelo contexto — incerteza do escopo, "
            "prazo, maturidade da equipe e regulação do ambiente —, e não por preferência ou modismo."),
-      T([["Critério", "Contexto do Agenda Bela", "Indica"],
+      T([["Critério", "Contexto do Agenda Estilo", "Indica"],
          ["Incerteza do escopo", "Ideia nova; a entrevista já mudou as prioridades uma vez.", "Ágil"],
          ["Prazo", "Pouco mais de duas semanas, com entrega fixa em 27/11.", "Ciclos curtos e incrementais"],
          ["Maturidade da equipe", "Equipe acadêmica de 6 pessoas, com experiências diferentes.", "Papéis claros e estrutura simples"],
@@ -585,7 +585,7 @@ s += [P("7. Validação do MVP", h1),
       NOTA("<b>Disciplina (ML2 §4 e ML4 §4):</b> testar protótipos antecipa problemas antes que fiquem caros. "
            "Entrega técnica não é validação: é preciso confrontar o produto com usuários reais e evidências."),
       P("7.1 Tipos de teste aplicados", h2),
-      T([["Teste", "O que verifica no Agenda Bela"],
+      T([["Teste", "O que verifica no Agenda Estilo"],
          ["Usabilidade", "Se a profissional completa as tarefas sem ajuda e quais elementos confundem."],
          ["Fluxo", "Se as sequências cadastro → deslocamento → valor → lembrete e busca → remarcação são lógicas."],
          ["Compatibilidade", "Se o protótipo abre e funciona no Chrome (Android) e no Safari (iPhone); o questionário registra o aparelho usado por cada participante."],
@@ -598,7 +598,7 @@ s += [P("7. Validação do MVP", h1),
          ["Método", "Teste de usabilidade com protótipo navegável, seguido de questionário. Duas modalidades: "
           "<b>moderado</b> (presencial ou por videochamada, com cronômetro) e <b>remoto</b> (link do protótipo + "
           "Google Forms enviado pelo WhatsApp, com respostas autodeclaradas)."],
-         ["Ferramentas", "Site do Agenda Bela aberto no celular da participante; cronômetro; Google Forms; Google Sheets."],
+         ["Ferramentas", "Site do Agenda Estilo aberto no celular da participante; cronômetro; Google Forms; Google Sheets."],
          ["Usuárias", "Profissionais autônomas da beleza que atendem a domicílio (manicures, maquiadoras, "
           "cabeleireiras, designers de sobrancelha, esteticistas), começando pela Entrevistada 1."],
          ["Universo", "Mínimo de 10 participantes; meta de 12 para compensar desistências."],
@@ -695,7 +695,7 @@ s += [FILL("Inserir aqui as fotos e prints dos testes, com legenda (o que é, da
       P("8.7 Documento de lições aprendidas", h2),
       P("Estruturado conforme o modelo da disciplina (ML4, Quadro 3):"),
       T([["Seção", "Conteúdo"],
-         ["Introdução", "Experiências da descoberta, prototipação e validação do MVP do Agenda Bela."],
+         ["Introdução", "Experiências da descoberta, prototipação e validação do MVP do Agenda Estilo."],
          ["Objetivo", "Registrar o que funcionou, o que não atendeu às expectativas e as ações para as próximas versões."],
          ["Contexto", "O MVP entregou agendamento com local, agenda em linha do tempo com busca e remarcação, hora de "
           "chamar o transporte com lembrete e carteira do dia; resumos, cadastro de clientes e backup ficaram para depois."],
@@ -717,7 +717,7 @@ s += [FILL("Inserir aqui as fotos e prints dos testes, com legenda (o que é, da
            "recrutamento de participantes)."),
       P("8.8 Impacto esperado", h2),
       P("Ao ajudar profissionais autônomas da beleza a organizar a agenda sem papel, planejar o transporte até cada "
-        "cliente e acompanhar o sinal e o lucro de cada atendimento, o Agenda Bela contribui para a ODS 8 de três "
+        "cliente e acompanhar o sinal e o lucro de cada atendimento, o Agenda Estilo contribui para a ODS 8 de três "
         "formas: mais <b>produtividade</b> (menos tempo procurando horários e calculando trajetos), mais <b>renda</b> "
         "(manter o atendimento a domicílio, que segundo a entrevistada evita a perda de clientes, e decidir com base "
         "no lucro real) e mais <b>autonomia e profissionalização</b>, criando base para a formalização como MEI. Por "
@@ -736,7 +736,7 @@ s += [P("Anexo A – Regra de cálculo da hora de chamar o transporte", h1),
         "back-end e de API paga no MVP. O cálculo automático fica como evolução futura (RF22)."),
       Spacer(1, 10),
       P("Anexo B – Aviso de privacidade (texto proposto para o site)", h1),
-      P("<i>\"Seus dados ficam só no seu celular. O Agenda Bela não tem servidor e não guarda suas informações nem "
+      P("<i>\"Seus dados ficam só no seu celular. O Agenda Estilo não tem servidor e não guarda suas informações nem "
         "as das suas clientes. Para mostrar a rota, o endereço do atendimento é enviado ao Google Maps. Se você "
         "limpar os dados do navegador ou trocar de celular, suas informações serão perdidas. Você pode apagar "
         "tudo a qualquer momento em Meus dados.\"</i>"),
@@ -766,7 +766,7 @@ s += [P("C.2 Teste remoto (Google Forms)", h2),
 s += B(["Achar uma cliente e remarcar foi mais fácil do que na minha agenda atual. <i>(M6)</i>",
         "Saber a hora de chamar o transporte me ajudaria a não me atrasar.",
         "Ver o sinal e o lucro me ajuda a organizar minha renda. <i>(M7)</i>",
-        "Eu usaria o Agenda Bela no meu trabalho. <i>(M9)</i>"])
+        "Eu usaria o Agenda Estilo no meu trabalho. <i>(M9)</i>"])
 s += [P("<b>Parte 3 – SUS (System Usability Scale), 1 a 5:</b> <i>(M8)</i>")]
 sus = ["Eu acho que gostaria de usar este site com frequência.",
        "Eu achei o site desnecessariamente complexo.",
@@ -833,15 +833,15 @@ def footer(c, d):
     if d.page == 1: return
     c.saveState()
     c.setFont("S", 8); c.setFillColor(colors.HexColor("#888888"))
-    c.drawString(2 * cm, 1.2 * cm, "Agenda Bela – F108 Desenvolvimento de Projeto Aplicado – UNIFOR")
+    c.drawString(2 * cm, 1.2 * cm, "Agenda Estilo – F108 Desenvolvimento de Projeto Aplicado – UNIFOR")
     c.drawRightString(A4[0] - 2 * cm, 1.2 * cm, str(d.page))
     c.setStrokeColor(ROSA); c.setLineWidth(0.6)
     c.line(2 * cm, A4[1] - 1.4 * cm, A4[0] - 2 * cm, A4[1] - 1.4 * cm)
     c.restoreState()
 
-SAIDA = os.environ.get("SAIDA_PDF") or os.path.join(RELATORIO, f"Agenda_Bela_F108_v{VERSAO}.pdf")
+SAIDA = os.environ.get("SAIDA_PDF") or os.path.join(RELATORIO, f"Agenda_Estilo_F108_v{VERSAO}.pdf")
 doc = SimpleDocTemplate(SAIDA, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm,
-                        topMargin=2 * cm, bottomMargin=2 * cm, title="Agenda Bela – F108",
-                        author="Equipe Agenda Bela – Grupo 31")
+                        topMargin=2 * cm, bottomMargin=2 * cm, title="Agenda Estilo – F108",
+                        author="Equipe Agenda Estilo – Grupo 31")
 doc.build(s, onFirstPage=footer, onLaterPages=footer)
 print("ok:", os.path.normpath(SAIDA))

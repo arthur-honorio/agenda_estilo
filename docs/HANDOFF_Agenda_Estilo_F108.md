@@ -1,4 +1,7 @@
-# Handoff: Projeto Agenda Bela – F108 (UNIFOR)
+# Handoff: Projeto Agenda Estilo – F108 (UNIFOR)
+
+> Em 19/11/2026 o projeto foi renomeado de **Agenda Bela** para **Agenda Estilo**, para incluir
+> barbeiros e esteticistas. Nomes de arquivos e links antigos abaixo foram mantidos como estão.
 
 > Contexto para continuar o trabalho no Claude Code. Conversa original: 17 a 19/11/2026.
 > Usuário: Arthur Honorio do Carmo (ADS/UNIFOR). Idioma: português.
@@ -13,7 +16,7 @@
 
 ## 2. O produto
 
-**Agenda Bela**: **site mobile first** (não é app nativo) para profissionais autônomas da beleza que **atendem a domicílio**. Une três serviços:
+**Agenda Estilo**: **site mobile first** (não é app nativo) para profissionais autônomas da beleza que **atendem a domicílio**. Une três serviços:
 1. **Agendamento**: cliente, serviço, data, início, duração, local (estúdio ou domicílio + endereço).
 2. **Deslocamento**: um **iframe do Google Maps** mostra a rota e o tempo; **a profissional digita o tempo** (o site não lê o iframe). O sistema calcula a **hora de chamar o transporte** = início − deslocamento − folga, e gera um **lembrete na agenda do celular** (Google Agenda/.ics).
 3. **Carteira**: valor, **sinal pago**, restante a receber, custo do deslocamento, lucro.
@@ -119,7 +122,7 @@ Seções: consentimento (+ autorização de imagem, **ampliar para fotos usando 
 
 | Arquivo | O que é |
 |---|---|
-| `Agenda_Bela_F108_v3.pdf` | Relatório atual (versão mais recente) |
+| `Agenda_Bela_F108_v3.pdf` | Relatório v3 (a versão mais recente agora é `Agenda_Estilo_F108_v5.pdf`) |
 | `scripts/gerar3.py` | Gera o PDF v3 (`exec` de `parts_head.py`, que faz `exec` de `base.py`) |
 | `scripts/parts_head.py`, `scripts/base.py` | Estilos, fontes DejaVu, helpers `P`, `B`, `T`, `FILL`, `NOTA`, `card` |
 | `scripts/redact.py` | OCR (tesseract) que cobre telefones nos prints |
