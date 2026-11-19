@@ -1,17 +1,23 @@
 /*
  * Mobile first (RNF01: telas de 360 a 430 px).
  * Acessibilidade (RNF05): contraste AA, fonte base 16 px, toque ≥ 44 × 44 px.
+ *
+ * Paleta "Grafite & Lavanda" (neutra para barbeiros e esteticistas). Contrastes WCAG:
+ * branco no grafite 13,5 · lavanda no branco 5,6 · texto suave no branco 7,2 ·
+ * lavanda clara no grafite 7,8. Verde (livre), âmbar (transporte) e vermelho (erro)
+ * têm significado e ficam fora da paleta da marca.
  */
 :root {
-  --cor-fundo: #fdf6f2;
+  --cor-fundo: #f5f5f7;
   --cor-superficie: #ffffff;
-  --cor-texto: #2b1d22;
-  --cor-texto-suave: #6b5560;
-  --cor-primaria: #7a2e4d;
-  --cor-primaria-clara: #f6e4ea;
+  --cor-texto: #18181b;
+  --cor-texto-suave: #57565f;
+  --cor-primaria: #2f2d3a;
+  --cor-primaria-clara: #eceaf6;
   --cor-primaria-texto: #ffffff;
-  --cor-destaque: #e8a598;
-  --cor-borda: #e6d6d0;
+  --cor-destaque: #6d58b8;
+  --cor-marca-clara: #c9bef0;
+  --cor-borda: #e2e1e8;
   --cor-livre: #2f6b4f;
   --cor-livre-fundo: #eaf5ee;
   --cor-transporte: #8a4b00;
@@ -86,11 +92,11 @@ select {
 
 input:focus,
 select:focus {
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-destaque);
 }
 
 :focus-visible {
-  outline: 3px solid var(--cor-primaria);
+  outline: 3px solid var(--cor-destaque);
   outline-offset: 2px;
 }
 
@@ -123,6 +129,11 @@ select:focus {
 .marca {
   font-weight: 700;
   font-size: 1.125rem;
+  letter-spacing: 0.01em;
+}
+
+.marca span {
+  color: var(--cor-marca-clara);
 }
 
 .conteudo {
@@ -161,7 +172,7 @@ select:focus {
 }
 
 .aba.active {
-  color: var(--cor-primaria);
+  color: var(--cor-destaque);
   font-weight: 700;
 }
 
@@ -241,7 +252,7 @@ select:focus {
   display: inline-flex;
   align-items: center;
   min-height: var(--toque-min);
-  color: var(--cor-primaria);
+  color: var(--cor-destaque);
   font-weight: 600;
 }
 
@@ -250,7 +261,7 @@ select:focus {
   align-items: center;
   min-height: var(--toque-min);
   margin-left: -0.5rem;
-  color: var(--cor-primaria);
+  color: var(--cor-destaque);
   font-weight: 600;
   text-decoration: none;
 }
@@ -362,7 +373,7 @@ select:focus {
 }
 
 .busca:focus-within {
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-destaque);
 }
 
 .seletor-data {
@@ -562,7 +573,7 @@ select:focus {
 
 .com-prefixo:focus-within,
 .com-sufixo:focus-within {
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-destaque);
 }
 
 .campo-com-erro .com-prefixo,
