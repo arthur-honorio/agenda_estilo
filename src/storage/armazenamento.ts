@@ -6,8 +6,32 @@ import type { DadosDoAtendimento } from '../domain/formulario'
  * Dados só no navegador (RNF07): nada sai do aparelho.
  * O sufixo de versão na chave permite mudar o formato no futuro sem quebrar dados antigos.
  */
-const CHAVE_ATENDIMENTOS = 'agenda-bela:atendimentos:v1'
-const CHAVE_PREFERENCIAS = 'agenda-bela:preferencias:v1'
+const CHAVE_ATENDIMENTOS = 'agenda-estilo:atendimentos:v1'
+const CHAVE_PREFERENCIAS = 'agenda-estilo:preferencias:v1'
+
+/** Chaves do nome inicial do projeto (Agenda Bela) → chaves atuais. */
+const CHAVES_ANTIGAS: Record<string, string> = {
+  'agenda-bela:atendimentos:v1': CHAVE_ATENDIMENTOS,
+  'agenda-bela:preferencias:v1': CHAVE_PREFERENCIAS,
+}
+
+/**
+ * Leva os dados salvos com o nome antigo para as chaves novas, uma única vez.
+ * Se já houver dados nas chaves novas, eles valem e os antigos são descartados.
+ */
+export function migrarChavesAntigas(): void {
+  try {
+    for (const [antiga, nova] of Object.entries(CHAVES_ANTIGAS)) {
+      const valor = localStorage.getItem(antiga)
+      if (valor === null) continue
+      if (localStorage.getItem(nova) === null) localStorage.setItem(nova, valor)
+      localStorage.removeItem(antiga)
+    }
+  } catch {
+    // Navegador sem localStorage (ex.: modo restrito): não há o que migrar.
+  }
+}
+migrarChavesAntigas()
 
 export interface Preferencias {
   /** Último "saindo de" usado, para pré-preencher o próximo cadastro. */
