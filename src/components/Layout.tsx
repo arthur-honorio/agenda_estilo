@@ -19,7 +19,9 @@ export function Layout() {
   return (
     <div className="app">
       <header className="topo">
-        <span className="marca">Agenda Bela</span>
+        <span className="marca">
+          Agenda <span>Estilo</span>
+        </span>
       </header>
 
       <main className="conteudo">
