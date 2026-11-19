@@ -52,7 +52,7 @@ describe('T1 + T4: cadastrar a Ana e ler hora do transporte, restante e lucro', 
     await u.type(screen.getByLabelText('Sinal já pago'), '20')
 
     // Resumo ao vivo, antes de salvar
-    expect(screen.getByText(/Chame o transporte às/).textContent).toBe(
+    expect(screen.getByText(/Chame o transporte às/).closest('p')?.textContent).toBe(
       'Chame o transporte às 13h20 para chegar às 14h00',
     )
 

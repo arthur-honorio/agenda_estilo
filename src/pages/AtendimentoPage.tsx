@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { AdicionarLembrete } from '../components/AdicionarLembrete'
 import { IconeVoltar } from '../components/Icones'
 import { AvisoTransporte, ValoresDoAtendimento } from '../components/ResumoAtendimento'
-import { NOME_DO_MEIO } from '../domain/lembrete'
+import { NOME_DO_MEIO } from '../domain/meio'
 import { urlRotaNoGoogleMaps } from '../domain/mapa'
 import { formatarData, formatarDuracao, formatarMinutos, paraMinutos } from '../domain/tempo'
 import { atualizarAtendimento, useAtendimentos } from '../storage/armazenamento'
@@ -59,7 +59,7 @@ export function AtendimentoPage() {
             {NOME_DO_MEIO[a.deslocamento.meio]}
           </p>
           <AdicionarLembrete atendimento={a} />
-          <a href={urlRotaNoGoogleMaps(a.endereco ?? '', a.deslocamento.origem)} target="_blank" rel="noreferrer" className="link">
+          <a href={urlRotaNoGoogleMaps(a.endereco ?? '', a.deslocamento.origem, a.deslocamento.meio)} target="_blank" rel="noreferrer" className="link">
             Ver a rota no Google Maps
           </a>
         </div>

@@ -1,20 +1,21 @@
 import type { Atendimento } from '../domain/atendimento'
 import { custoDeslocamento, lucro, restanteAReceber } from '../domain/carteira'
 import { formatarReais } from '../domain/dinheiro'
+import { textoDaHora } from '../domain/meio'
 import { horaPorExtenso } from '../domain/tempo'
 import { horaDeChamarDoAtendimento } from '../domain/transporte'
 import { IconeCarro } from './Icones'
 
-/** "Chame o transporte às 13h20 para chegar às 14h00" (HU02 / Anexo A). */
+/** "Chame o transporte às 13h20 para chegar às 14h00" (HU02 / Anexo A); "Saia às…" se ela vai por conta própria. */
 export function AvisoTransporte({ atendimento }: { atendimento: Atendimento }) {
   const chamar = horaDeChamarDoAtendimento(atendimento)
-  if (!chamar) return null
+  if (!chamar || !atendimento.deslocamento) return null
   const outroDia = chamar.data !== atendimento.data
   return (
     <div className="aviso-transporte">
       <IconeCarro />
       <p>
-        Chame o transporte às <strong>{horaPorExtenso(chamar.hora)}</strong>
+        <strong>{textoDaHora(atendimento.deslocamento.meio, chamar.hora)}</strong>
         {outroDia && ' (do dia anterior)'} para chegar às {horaPorExtenso(atendimento.inicio)}
       </p>
     </div>

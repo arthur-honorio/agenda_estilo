@@ -1,18 +1,19 @@
+import type { MeioDeslocamento } from '../domain/atendimento'
 import { urlMapaIncorporado, urlRotaNoGoogleMaps } from '../domain/mapa'
 
-/** Mapa incorporado com a rota (RF05) e atalho para o app do Google Maps. */
-export function MapaRota({ destino, origem }: { destino: string; origem?: string }) {
+/** Mapa incorporado com a rota pelo meio escolhido (RF05) e atalho para o app do Google Maps. */
+export function MapaRota({ destino, origem, meio }: { destino: string; origem?: string; meio?: MeioDeslocamento }) {
   if (destino.trim().length < 5) return null
   return (
     <div className="mapa">
       <iframe
         title={`Mapa da rota até ${destino}`}
-        src={urlMapaIncorporado(destino, origem)}
+        src={urlMapaIncorporado(destino, origem, meio)}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
-      <a href={urlRotaNoGoogleMaps(destino, origem)} target="_blank" rel="noreferrer" className="link">
-        Abrir a rota no Google Maps
+      <a href={urlRotaNoGoogleMaps(destino, origem, meio)} target="_blank" rel="noreferrer" className="link">
+        Ver o tempo do trajeto no Google Maps
       </a>
     </div>
   )

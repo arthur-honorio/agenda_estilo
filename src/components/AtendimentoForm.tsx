@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { conflitos, intervaloOcupado } from '../domain/agenda'
 import type { Atendimento, MeioDeslocamento } from '../domain/atendimento'
 import { validar, type CampoDoRascunho, type DadosDoAtendimento, type Rascunho } from '../domain/formulario'
-import { NOME_DO_MEIO } from '../domain/lembrete'
+import { dicaDaFolga, MEIOS, NOME_DO_MEIO } from '../domain/meio'
 import { formatarDuracao, formatarMinutos } from '../domain/tempo'
 import { useAtendimentos } from '../storage/armazenamento'
 import { ariaDoCampo } from './aria'
@@ -13,7 +13,6 @@ import { AvisoTransporte, ValoresDoAtendimento } from './ResumoAtendimento'
 
 const DURACOES = Array.from({ length: 24 }, (_, i) => (i + 1) * 15) // 15 min a 6h
 const FOLGAS = [0, 5, 10, 15, 20, 30]
-const MEIOS = Object.keys(NOME_DO_MEIO) as MeioDeslocamento[]
 
 interface Props {
   inicial: Rascunho
@@ -137,7 +136,17 @@ export function AtendimentoForm({ inicial, idEditado, rotuloSalvar, aoSalvar }: 
               <input {...texto('origem')} autoComplete="off" placeholder="Ex.: seu estúdio ou sua casa" />
             </Campo>
 
-            <MapaRota destino={enderecoDoMapa} origem={r.origem} />
+            <Campo id="campo-meio" rotulo="Como você vai">
+              <select {...ariaDoCampo('campo-meio')} value={r.meio} onChange={(e) => mudar('meio', e.target.value as MeioDeslocamento)}>
+                {MEIOS.map((m) => (
+                  <option key={m} value={m}>
+                    {NOME_DO_MEIO[m]}
+                  </option>
+                ))}
+              </select>
+            </Campo>
+
+            <MapaRota destino={enderecoDoMapa} origem={r.origem} meio={r.meio} />
 
             <div className="linha-campos">
               <Campo
@@ -151,7 +160,7 @@ export function AtendimentoForm({ inicial, idEditado, rotuloSalvar, aoSalvar }: 
                   <span>min</span>
                 </div>
               </Campo>
-              <Campo id="campo-folgaMin" rotulo="Folga" erro={errosVisiveis.folgaMin} dica="Para o carro chegar.">
+              <Campo id="campo-folgaMin" rotulo="Folga" erro={errosVisiveis.folgaMin} dica={dicaDaFolga(r.meio)}>
                 <select {...texto('folgaMin')}>
                   {FOLGAS.map((f) => (
                     <option key={f} value={f}>
@@ -161,23 +170,12 @@ export function AtendimentoForm({ inicial, idEditado, rotuloSalvar, aoSalvar }: 
                 </select>
               </Campo>
             </div>
-            <div className="linha-campos">
-              <Campo id="campo-meio" rotulo="Como você vai">
-                <select {...ariaDoCampo('campo-meio')} value={r.meio} onChange={(e) => mudar('meio', e.target.value as MeioDeslocamento)}>
-                  {MEIOS.map((m) => (
-                    <option key={m} value={m}>
-                      {NOME_DO_MEIO[m]}
-                    </option>
-                  ))}
-                </select>
-              </Campo>
-              <Campo id="campo-custo" rotulo="Custo do trajeto" erro={errosVisiveis.custo}>
-                <div className="com-prefixo">
-                  <span>R$</span>
-                  <input {...texto('custo')} inputMode="decimal" placeholder="0" />
-                </div>
-              </Campo>
-            </div>
+            <Campo id="campo-custo" rotulo="Custo do trajeto" erro={errosVisiveis.custo}>
+              <div className="com-prefixo">
+                <span>R$</span>
+                <input {...texto('custo')} inputMode="decimal" placeholder="0" />
+              </div>
+            </Campo>
           </>
         )}
       </fieldset>

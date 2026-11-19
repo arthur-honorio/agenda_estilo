@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { ItemLinhaDoTempo } from '../domain/agenda'
-import { formatarDuracao, formatarMinutos, horaPorExtenso } from '../domain/tempo'
+import { rotuloDaHora } from '../domain/meio'
+import { formatarDuracao, formatarMinutos } from '../domain/tempo'
 import { IconeCarro } from './Icones'
 
 interface Props {
@@ -46,7 +47,7 @@ export function LinhaDoTempo({ itens, aoEscolherLivre, rotuloLivre = 'Encaixar',
               <div className="item-corpo">
                 <IconeCarro />
                 <span>
-                  <strong>Chamar o transporte às {horaPorExtenso(formatarMinutos(item.inicio))}</strong>
+                  <strong>{rotuloDaHora(a.deslocamento!.meio, formatarMinutos(item.inicio))}</strong>
                   <br />
                   <small>
                     {formatarDuracao(a.deslocamento!.tempoMin)} de trajeto + {a.deslocamento!.folgaMin} min de folga
