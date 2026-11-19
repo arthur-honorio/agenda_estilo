@@ -1,10 +1,12 @@
-import type { Atendimento, MeioDeslocamento } from './atendimento'
+import type { Atendimento } from './atendimento'
+import { chamaTransporte, NOME_DO_MEIO } from './meio'
 import { horaDeChamarDoAtendimento } from './transporte'
 import { deslocarMinutos, formatarDuracao, horaPorExtenso } from './tempo'
 
 /**
  * Lembrete da hora de chamar o transporte na agenda do celular (RF08 / HU07, Anexo A):
- * evento "Chamar transporte – [cliente]" na hora calculada, com alerta nessa hora e
+ * evento "Chamar transporte – [cliente]" (ou "Sair para [cliente]", para quem vai por conta própria)
+ * na hora calculada, com alerta nessa hora e
  * cliente, serviço e endereço na descrição.
  */
 export interface Lembrete {
@@ -16,20 +18,12 @@ export interface Lembrete {
   duracaoMin: number
 }
 
-export const NOME_DO_MEIO: Record<MeioDeslocamento, string> = {
-  aplicativo: 'Aplicativo (Uber, 99…)',
-  onibus: 'Ônibus',
-  mototaxi: 'Mototáxi',
-  carro: 'Carro ou moto próprios',
-  outro: 'Outro',
-}
-
 export function lembreteDoAtendimento(a: Atendimento): Lembrete | null {
   const chamar = horaDeChamarDoAtendimento(a)
   if (!chamar || !a.deslocamento) return null
   const { tempoMin, folgaMin, meio } = a.deslocamento
   return {
-    titulo: `Chamar transporte – ${a.cliente}`,
+    titulo: chamaTransporte(meio) ? `Chamar transporte – ${a.cliente}` : `Sair para ${a.cliente}`,
     descricao: [
       `${a.servico} com ${a.cliente} às ${horaPorExtenso(a.inicio)}.`,
       `Endereço: ${a.endereco ?? ''}`,

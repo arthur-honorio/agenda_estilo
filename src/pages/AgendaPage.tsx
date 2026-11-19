@@ -6,6 +6,7 @@ import { SeletorDeData } from '../components/SeletorDeData'
 import { useDataDaUrl } from '../hooks/useDataDaUrl'
 import { buscarPorCliente, linhaDoTempo, proximoTransporte } from '../domain/agenda'
 import { atendimentosDeExemplo } from '../domain/exemplos'
+import { textoDaHora } from '../domain/meio'
 import { dataLocal, formatarData, formatarMinutos, horaPorExtenso, minutosAgora } from '../domain/tempo'
 import { carregarExemplos, useAtendimentos } from '../storage/armazenamento'
 
@@ -44,8 +45,8 @@ export function AgendaPage() {
             <Link to={`/atendimento/${proximo.atendimento.id}`} className="proximo-transporte">
               <IconeCarro />
               <span>
-                {data === hoje ? 'Próximo transporte' : 'Primeiro transporte do dia'}:{' '}
-                <strong>chame às {horaPorExtenso(formatarMinutos(proximo.minuto))}</strong>
+                {data === hoje ? 'Próximo deslocamento' : 'Primeiro deslocamento do dia'}:{' '}
+                <strong>{textoDaHora(proximo.atendimento.deslocamento!.meio, formatarMinutos(proximo.minuto))}</strong>
                 <br />
                 <small>
                   {proximo.atendimento.cliente}, às {horaPorExtenso(proximo.atendimento.inicio)}
