@@ -1,0 +1,39 @@
+# Dependências e build
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.local
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Variáveis de ambiente (ex.: chave do mapa)
+.env
+.env.*
+!.env.example
+
+# Python (scripts do relatório)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Pacotes recebidos — o conteúdo já está extraído em docs/
+*.zip
+
+# Editor e sistema operacional
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.sw?
+~$*
+
+# Configuração local do Claude Code
+.claude/settings.local.json
