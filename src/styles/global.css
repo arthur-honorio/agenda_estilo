@@ -1,0 +1,128 @@
+/*
+ * Mobile first (RNF01: telas de 360 a 430 px).
+ * Acessibilidade (RNF05): contraste AA, fonte base 16 px, toque ≥ 44 × 44 px.
+ */
+:root {
+  --cor-fundo: #fdf6f2;
+  --cor-superficie: #ffffff;
+  --cor-texto: #2b1d22;
+  --cor-texto-suave: #6b5560;
+  --cor-primaria: #7a2e4d;
+  --cor-primaria-texto: #ffffff;
+  --cor-destaque: #e8a598;
+  --cor-borda: #e6d6d0;
+  --cor-alerta: #9a3412;
+
+  --raio: 12px;
+  --toque-min: 44px;
+  --altura-abas: 64px;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  min-height: var(--toque-min);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+/* Layout */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  padding-top: calc(0.75rem + env(safe-area-inset-top));
+  background: var(--cor-primaria);
+  color: var(--cor-primaria-texto);
+}
+
+.marca {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.conteudo {
+  flex: 1;
+  padding: 1rem;
+  padding-bottom: calc(var(--altura-abas) + 1rem + env(safe-area-inset-bottom));
+}
+
+.vazio {
+  color: var(--cor-texto-suave);
+}
+
+/* Navegação inferior: fica ao alcance do polegar */
+.abas {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: var(--altura-abas);
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.aba {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: var(--toque-min);
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+}
+
+.aba-icone {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.aba.active {
+  color: var(--cor-primaria);
+  font-weight: 700;
+}
