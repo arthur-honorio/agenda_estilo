@@ -3,7 +3,7 @@
 # Dependências: docs/relatorio/scripts/requirements.txt
 import os
 
-VERSAO = 3
+VERSAO = 4
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RELATORIO = os.path.dirname(AQUI)
 PRINTS = os.path.join(RELATORIO, "..", "pesquisa", "brainstorm")
@@ -180,9 +180,19 @@ s += [P("2.2 Avaliação de tecnologias (matriz de decisão)", h2),
          ["Lembrete", "Notificação própria (web push/PWA) × evento na agenda do celular", "Agenda do celular",
           "Compatibilidade: web push no iPhone só funciona com o site instalado; o calendário do aparelho "
           "notifica em qualquer celular."],
-         ["Protótipo do MVP", "Código funcional × protótipo navegável no Figma", "Figma",
-          "Curva de aprendizado e prazo: permite testar fluxo e usabilidade com usuárias reais em poucos dias."]],
+         ["Protótipo do MVP", "Código funcional × protótipo navegável no Figma", "Código funcional (site)",
+          "Validação realista: a participante cadastra no próprio celular, recebe o lembrete de verdade na agenda "
+          "do aparelho e vê os cálculos com os dados que digitou; as telas validadas já são o produto "
+          "(prototipação evolutiva)."],
+         ["Construção do site", "HTML/JavaScript sem framework × React com TypeScript", "React + TypeScript",
+          "Interoperabilidade e manutenção: ferramentas gratuitas e amplamente usadas; a tipagem evita erros nos "
+          "cálculos de horário e dinheiro, que também são cobertos por testes automatizados."]],
         [2.5 * cm, 4.6 * cm, 2.6 * cm, W - 9.7 * cm]),
+      Spacer(1, 4),
+      P("A primeira versão deste planejamento escolheu o Figma para o protótipo. Na sprint 2 (19/11), a equipe revisou "
+        "a decisão e optou pelo site em código, mantendo o mesmo escopo (itens <i>Must</i>). A revisão segue o "
+        "princípio ágil de responder a mudanças: o protótipo funcional mede melhor as hipóteses H3 e H4 (hora do "
+        "transporte e lembrete), que dependem de interação real com o celular."),
       Spacer(1, 6),
       P("2.3 Requisitos funcionais (solução completa)", h2),
       T([["ID", "Requisito", "Prioridade"],
@@ -287,11 +297,13 @@ s += [P("3. Documentação das Funcionalidades (histórias de usuário)", h1),
            "do Agenda Bela."),
       P("3.5 Definição de pronto (Definition of Done) da equipe", h2),
       P("Uma história só vai para a coluna <b>Concluído</b> do quadro quando:")]
-s += B(["a tela correspondente está prototipada no Figma, em frame de celular, e ligada ao fluxo navegável;",
+s += B(["a tela correspondente está implementada no site e publicada no link de teste;",
+        "funciona no celular, no Chrome (Android) e no Safari (iPhone);",
+        "as regras de cálculo envolvidas têm testes automatizados passando;",
         "todos os critérios de aceitação foram conferidos por outro integrante (revisão em par);",
         "textos e botões seguem os requisitos de acessibilidade (RNF05);",
         "o card no Trello tem o print da tela anexado."])
-s += [FILL("Anexar no Dream Shape as evidências desta seção (prints dos cards no Trello e das telas do Figma)."),
+s += [FILL("Anexar no Dream Shape as evidências desta seção (prints dos cards no Trello e das telas do site)."),
       PageBreak()]
 
 # ---------------- 4 ----------------
@@ -367,14 +379,15 @@ s += [P("4. Planejamento da Solução MVP", h1),
         "exatamente os itens <i>Must</i>, que formam o MVP."),
       P("4.6 Escopo formal do MVP", h2),
       T([["Parte", "Conteúdo"],
-         ["Objetivo", "Protótipo navegável que permita cadastrar e consultar atendimentos, remarcar, saber a hora de "
+         ["Objetivo", "Site funcional, em versão mínima, que permita cadastrar e consultar atendimentos, remarcar, saber a hora de "
           "chamar o transporte com lembrete e ver a carteira do dia."],
          ["Entregas", "Três telas principais, como definido no brainstorming: <b>agendamento</b> (cliente, serviço, "
           "início, duração, local, endereço, tempo de deslocamento, valor, sinal e custo do transporte), "
           "<b>agenda</b> (linha do tempo, busca, remarcar, desmarcar e lembrete) e <b>carteira</b> (a receber, "
           "sinais, custos e lucro do dia)."],
-         ["Limitações", "Protótipo no Figma (sem código); tempo de deslocamento digitado pela profissional; dados "
-          "simulados; apenas a visão do dia."],
+         ["Limitações", "Sem servidor: os dados ficam só no navegador do aparelho; tempo de deslocamento digitado "
+          "pela profissional; apenas a visão do dia; para os testes, a agenda pode ser carregada com atendimentos "
+          "de exemplo (como o da Carla, usado na T2)."],
          ["Exclusões", "Back-end e contas de usuário; cálculo automático de rota; notificações próprias; resumos "
           "semanal/mensal; cadastro de clientes; regra automática de sinal; backup; confirmação via WhatsApp."],
          ["Prazo", "10/11 a 27/11/2026, em 4 sprints (seção 6)."]],
@@ -385,10 +398,11 @@ s += [P("4. Planejamento da Solução MVP", h1),
       P("4.7 Tipo de protótipo", h2),
       NOTA("<b>Disciplina (ML2 §3):</b> o tipo de protótipo deve seguir o objetivo. O funcional/média fidelidade "
            "testa fluxos e usabilidade com usuários reais; o de alta fidelidade aproxima a aparência do produto final."),
-      P("O MVP é um <b>protótipo navegável de alta fidelidade visual no Figma</b>, com função de <b>protótipo "
-        "funcional</b>: os fluxos e as interações principais são simulados com dados fictícios, sem persistência, "
-        "o suficiente para o teste de usabilidade. As participantes acessam por link no próprio celular. No futuro, o "
-        "projeto pode seguir como <b>prototipação evolutiva</b>, transformando as telas validadas no site real."),
+      P("O MVP é um <b>protótipo funcional em código</b>, com <b>alta fidelidade visual</b>: um site mobile first "
+        "que executa de verdade os fluxos principais (cadastro, linha do tempo, busca, remarcação, hora do "
+        "transporte, lembrete e carteira), com os dados salvos no navegador do aparelho. As participantes acessam "
+        "por link no próprio celular. O projeto segue a <b>prototipação evolutiva</b>: as telas validadas e as "
+        "correções apontadas nos testes evoluem direto para o produto, sem reconstrução."),
       P("4.8 Fluxos principais", h2),
       T([["Fluxo", "Passos"],
          ["Cadastrar atendimento a domicílio", "Agenda → \"+ Novo\" → cliente, serviço, data, início e duração → escolhe "
@@ -407,11 +421,12 @@ s += [P("4. Planejamento da Solução MVP", h1),
          ["16:40 às 17:00", "Deslocamento de 20 min (chamar o transporte às 16:40)"]],
         [3.6 * cm, W - 3.6 * cm]),
       Spacer(1, 6),
-      FILL("Inserir prints das telas do protótipo e o link do Figma."),
-      P("4.9 Disponibilização (versão futura)", h2),
-      P("Por ser um site estático sem back-end, a versão funcional pode ser publicada com custo zero em serviços como "
-        "GitHub Pages, Netlify ou Vercel. A chave do mapa incorporado fica fora do repositório (arquivo .env no "
-        "desenvolvimento) e é restrita ao domínio do site, evitando uso indevido."),
+      FILL("Inserir prints das telas do site e o link publicado."),
+      P("4.9 Disponibilização", h2),
+      P("Por ser um site estático sem back-end, ele é publicado com custo zero no <b>GitHub Pages</b>, com HTTPS "
+        "(RNF08). A cada mudança no repositório, os testes automatizados rodam e, se passarem, o site é publicado "
+        "de novo; se um teste falhar, a versão anterior continua no ar. Caso o mapa incorporado exija chave, ela "
+        "fica fora do código e é restrita ao domínio do site, evitando uso indevido."),
       PageBreak()]
 
 # ---------------- 5 ----------------
@@ -487,13 +502,13 @@ s += [P("6. Planejamento de Sprints, Monitoramento e Comunicação", h1),
       T([["Integrante", "Papel", "Responsabilidade"],
          ["Arthur Honorio do Carmo", "Product Owner", "Decide o que entra ou não no backlog; guarda a visão do produto e as exclusões."],
          ["Joel da Silva de Oliveira", "Time – Pesquisa", "Conduziu a entrevista; recrutamento das participantes e condução dos testes."],
-         ["Matheus Domingues Sales", "Time – UX/UI", "Desenho das telas e do protótipo navegável."],
+         ["Matheus Domingues Sales", "Time – UX/UI", "Desenho das telas e da experiência de uso do site."],
          ["Luana Magalhães de Souza Alves", "[definir]", "[definir]"],
          ["Matheus Sousa de Carvalho", "[definir]", "[definir]"],
          ["Thayná Nascimento Albano da Silva", "[definir]", "[definir]"]],
         [5 * cm, 3.2 * cm, W - 8.2 * cm]),
       Spacer(1, 4),
-      FILL("Confirmar os papéis e distribuir os que faltam: Scrum Master (quadro, cerimônias e prazos), "
+      FILL("Confirmar os papéis e distribuir os que faltam: Desenvolvimento do site, Scrum Master (quadro, cerimônias e prazos), "
            "Dados e documentação (planilha de métricas, gráficos e relatório) e Apoio aos testes (coleta de evidências). "
            "Os três integrantes ainda sem papel podem assumir essas funções a partir da sprint 2."),
       P("6.3 Cerimônias adaptadas ao prazo", h2)]
@@ -504,7 +519,9 @@ s += B(["<b>Planning</b> (início de cada sprint, ~20 min por videochamada): esc
 s += [P("6.4 Ferramentas e quadro Kanban", h2)]
 s += B(["<b>Trello</b> – quadro Kanban com as colunas <i>Backlog → A fazer → Fazendo → Em teste → Concluído</i>, "
         "mais a coluna <i>Impedimentos</i>; cada card é uma história (HU) ou tarefa.",
-        "<b>Figma</b> – protótipo navegável do MVP.",
+        "<b>GitHub</b> – repositório do código, histórico de versões e publicação do site (GitHub Pages).",
+        "<b>React + TypeScript</b> (com Vite) – construção do site; <b>Vitest</b> – testes automatizados das "
+        "regras de cálculo (hora do transporte, restante a receber e lucro).",
         "<b>WhatsApp</b> – comunicação diária e brainstorming (áudios transcritos); <b>Google Meet</b> – planning, "
         "review e retrospectiva.",
         "<b>Google Forms</b> – questionário; <b>Google Sheets</b> – métricas e gráficos; <b>Google Drive</b> – evidências."])
@@ -513,7 +530,7 @@ s += [P("6.5 Planejamento das sprints", h2),
          ["1 – Descoberta", "10/11 a 18/11", "Entender o problema e definir requisitos.",
           "Entrevista em duas etapas, brainstorming, dores, persona, RF/RNF, quadro Kanban montado."],
          ["2 – MVP e protótipo", "19/11 a 21/11", "Recortar o MVP e prototipar.",
-          "Histórias de usuário, MoSCoW, Valor × Esforço, métricas, protótipo no Figma, roteiro e formulário."],
+          "Histórias de usuário, MoSCoW, Valor × Esforço, métricas, site do MVP publicado, roteiro e formulário."],
          ["3 – Validação", "22/11 a 25/11", "Testar com usuárias reais.",
           "Mínimo de 10 testes, prints/fotos, respostas do formulário."],
          ["4 – Análise e relatório", "26/11 a 27/11", "Consolidar resultados e entregar.",
@@ -540,10 +557,13 @@ s += [P("6.5 Planejamento das sprints", h2),
          ["Não conseguir 10 participantes", "Alta", "Alto",
           "Teste remoto pelo Forms; cada integrante recruta ao menos 2 pessoas; pedir indicações à entrevistada, que "
           "também aceitou testar."],
-         ["Atraso no protótipo", "Média", "Alto",
+         ["Atraso no site", "Média", "Alto",
           "Priorizar só as telas dos fluxos principais; telas Should ficam de fora."],
-         ["Protótipo não abrir bem no celular", "Média", "Médio",
+         ["Site não funcionar bem em algum celular", "Média", "Médio",
           "Testar o link no Android e no iPhone antes dos testes (teste de compatibilidade)."],
+         ["Erro de cálculo ou perda de dados durante um teste", "Baixa", "Alto",
+          "Regras de cálculo cobertas por testes automatizados, que rodam antes de cada publicação; atendimentos "
+          "de exemplo que podem ser recarregados a qualquer momento."],
          ["Indisponibilidade de integrantes", "Média", "Médio",
           "Daily assíncrona; tarefas com responsável e substituto no card; equipe de 6 permite redistribuir."],
          ["Participantes sem autorização de imagem", "Baixa", "Médio",
@@ -578,7 +598,7 @@ s += [P("7. Validação do MVP", h1),
          ["Método", "Teste de usabilidade com protótipo navegável, seguido de questionário. Duas modalidades: "
           "<b>moderado</b> (presencial ou por videochamada, com cronômetro) e <b>remoto</b> (link do protótipo + "
           "Google Forms enviado pelo WhatsApp, com respostas autodeclaradas)."],
-         ["Ferramentas", "Protótipo no Figma no celular da participante; cronômetro; Google Forms; Google Sheets."],
+         ["Ferramentas", "Site do Agenda Bela aberto no celular da participante; cronômetro; Google Forms; Google Sheets."],
          ["Usuárias", "Profissionais autônomas da beleza que atendem a domicílio (manicures, maquiadoras, "
           "cabeleireiras, designers de sobrancelha, esteticistas), começando pela Entrevistada 1."],
          ["Universo", "Mínimo de 10 participantes; meta de 12 para compensar desistências."],
@@ -628,7 +648,8 @@ s += [P("8. Evidências, Ajuste de Produto e Relatório Final", h1),
 s += B(["Registro da entrevista com a Entrevistada 1 (já produzido).",
         "Prints do brainstorming no WhatsApp, com os telefones ocultados (Anexo E).",
         "Prints do quadro Kanban ao fim de cada uma das 4 sprints.",
-        "Prints das telas do protótipo no Figma.",
+        "Prints das telas do site e o link publicado.",
+        "Histórico de versões do repositório no GitHub (commits e publicações).",
         "Fotos ou prints de pelo menos 10 testes (com autorização das participantes).",
         "Respostas do Google Forms (resumo exportado) e planilha de consolidação das métricas."])
 s += [FILL("Inserir aqui as fotos e prints dos testes, com legenda (o que é, data, participante anonimizada)."),
