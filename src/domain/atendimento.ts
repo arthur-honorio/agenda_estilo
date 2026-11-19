@@ -13,6 +13,8 @@ export type MeioDeslocamento = 'aplicativo' | 'onibus' | 'mototaxi' | 'carro' | 
 export type StatusAtendimento = 'agendado' | 'desmarcado'
 
 export interface Deslocamento {
+  /** De onde a profissional sai (opcional); usado só para desenhar a rota no mapa. */
+  origem?: string
   /** Tempo de trajeto lido no mapa e digitado pela profissional (RF06). */
   tempoMin: number
   /** Margem extra, por exemplo para o carro de aplicativo chegar (RF06). */
