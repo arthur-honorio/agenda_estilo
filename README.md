@@ -1,7 +1,7 @@
-# Agenda Bela — F108 (UNIFOR) · Grupo 31
+# Agenda Estilo — F108 (UNIFOR) · Grupo 31
 
-Site **mobile first** para profissionais autônomas da beleza que atendem a domicílio.
-Junta três coisas em um lugar só:
+Site **mobile first** para profissionais autônomos de beleza e estética (manicures, maquiadoras,
+barbeiros, esteticistas…) que atendem a domicílio. Junta três coisas em um lugar só:
 
 1. **Agendamento**: cliente, serviço, data, início, duração e local (estúdio ou domicílio).
 2. **Deslocamento**: o mapa mostra a rota, a profissional digita o tempo e o site calcula
@@ -9,6 +9,10 @@ Junta três coisas em um lugar só:
 3. **Carteira**: valor, sinal pago, restante a receber, custo do deslocamento e lucro.
 
 Não tem servidor nem conta: os dados ficam **só no navegador** do celular.
+
+**No ar:** <https://arthur-honorio.github.io/agenda_estilo/>
+
+> O projeto começou como **Agenda Bela**.
 
 ## Como rodar
 
@@ -65,7 +69,7 @@ python -m venv .venv
 ```
 
 No Linux/macOS, troque `.venv/Scripts/python` por `.venv/bin/python`. O PDF sai em
-`docs/relatorio/Agenda_Bela_F108_v<VERSAO>.pdf`. Antes de gerar uma versão nova, aumente
+`docs/relatorio/Agenda_Estilo_F108_v<VERSAO>.pdf`. Antes de gerar uma versão nova, aumente
 `VERSAO` no topo de `gerar_relatorio.py`.
 
 ## Escopo do MVP
