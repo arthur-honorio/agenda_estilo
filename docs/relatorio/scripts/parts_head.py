@@ -1,4 +1,4 @@
-exec(open("/home/claude/base.py").read())
+exec(open(os.path.join(AQUI, "base.py"), encoding="utf-8").read())
 
 def card(titulo, rfs, desc, regras, rotulo="Critérios de aceitação"):
     rows = [[Paragraph(f"<b>{titulo}</b>  <font size=8>({rfs})</font>",

@@ -1,4 +1,14 @@
-exec(open("/home/claude/parts_head.py").read())
+# Gera o relatório em PDF. Uso (da raiz do repositório):
+#   python docs/relatorio/scripts/gerar_relatorio.py
+# Dependências: docs/relatorio/scripts/requirements.txt
+import os
+
+VERSAO = 3
+AQUI = os.path.dirname(os.path.abspath(__file__))
+RELATORIO = os.path.dirname(AQUI)
+PRINTS = os.path.join(RELATORIO, "..", "pesquisa", "brainstorm")
+
+exec(open(os.path.join(AQUI, "parts_head.py"), encoding="utf-8").read())
 from reportlab.platypus import Image as RLImage
 
 EQUIPE = ["Arthur Honorio do Carmo", "Joel da Silva de Oliveira", "Luana Magalhães de Souza Alves",
@@ -782,7 +792,7 @@ s += [P("<b>Cálculo do SUS:</b> itens ímpares → (resposta − 1); itens pare
         "transcrição automática do WhatsApp.")]
 
 import glob
-pics = sorted(glob.glob("/home/claude/prints_final/brainstorm_*.jpg"))
+pics = sorted(glob.glob(os.path.join(PRINTS, "brainstorm_*.jpg")))
 cw = (W - 0.6 * cm) / 4
 rows, row = [], []
 for p in pics:
@@ -808,8 +818,9 @@ def footer(c, d):
     c.line(2 * cm, A4[1] - 1.4 * cm, A4[0] - 2 * cm, A4[1] - 1.4 * cm)
     c.restoreState()
 
-doc = SimpleDocTemplate("/home/claude/Agenda_Bela_F108_v3.pdf", pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm,
+SAIDA = os.environ.get("SAIDA_PDF") or os.path.join(RELATORIO, f"Agenda_Bela_F108_v{VERSAO}.pdf")
+doc = SimpleDocTemplate(SAIDA, pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm,
                         topMargin=2 * cm, bottomMargin=2 * cm, title="Agenda Bela – F108",
                         author="Equipe Agenda Bela – Grupo 31")
 doc.build(s, onFirstPage=footer, onLaterPages=footer)
-print("ok")
+print("ok:", os.path.normpath(SAIDA))

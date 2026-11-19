@@ -8,11 +8,12 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 
-D = "/usr/share/fonts/truetype/dejavu/"
-pdfmetrics.registerFont(TTFont("S", D + "DejaVuSans.ttf"))
-pdfmetrics.registerFont(TTFont("SB", D + "DejaVuSans-Bold.ttf"))
-pdfmetrics.registerFont(TTFont("SI", D + "DejaVuSans-Oblique.ttf"))
-pdfmetrics.registerFont(TTFont("SBI", D + "DejaVuSans-BoldOblique.ttf"))
+# Fontes DejaVu versionadas em docs/relatorio/fonts (AQUI vem de gerar_relatorio.py)
+D = os.path.join(AQUI, "..", "fonts")
+pdfmetrics.registerFont(TTFont("S", os.path.join(D, "DejaVuSans.ttf")))
+pdfmetrics.registerFont(TTFont("SB", os.path.join(D, "DejaVuSans-Bold.ttf")))
+pdfmetrics.registerFont(TTFont("SI", os.path.join(D, "DejaVuSans-Oblique.ttf")))
+pdfmetrics.registerFont(TTFont("SBI", os.path.join(D, "DejaVuSans-BoldOblique.ttf")))
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 registerFontFamily("S", normal="S", bold="SB", italic="SI", boldItalic="SBI")
 

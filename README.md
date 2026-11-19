@@ -48,6 +48,20 @@ docs/
 Convenções do código: datas em `AAAA-MM-DD`, horas em `HH:MM` e **dinheiro em centavos**
 (inteiro). Use `formatarReais` e `paraCentavos` de `src/domain/dinheiro.ts` para exibir e ler valores.
 
+## Relatório (PDF)
+
+O relatório é gerado por script Python com ReportLab. As fontes DejaVu já estão em `docs/relatorio/fonts/`.
+
+```bash
+python -m venv .venv
+.venv/Scripts/python -m pip install -r docs/relatorio/scripts/requirements.txt   # Windows
+.venv/Scripts/python docs/relatorio/scripts/gerar_relatorio.py
+```
+
+No Linux/macOS, troque `.venv/Scripts/python` por `.venv/bin/python`. O PDF sai em
+`docs/relatorio/Agenda_Bela_F108_v<VERSAO>.pdf`. Antes de gerar uma versão nova, aumente
+`VERSAO` no topo de `gerar_relatorio.py`.
+
 ## Escopo do MVP
 
 **Must (entra agora):** RF01–RF12, ou seja, cadastro com local, linha do tempo do dia, busca,
