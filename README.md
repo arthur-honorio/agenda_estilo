@@ -30,6 +30,12 @@ o endereço "Network" que aparece no terminal.
 | `npm run build` | gera o site em `dist/` |
 | `npm run preview` | serve o `dist/` localmente |
 
+## Publicação
+
+Cada push na `main` dispara o workflow `.github/workflows/deploy.yml`: ele roda lint e testes,
+gera o build e publica no **GitHub Pages**. Se algum teste falhar, nada é publicado e a versão
+anterior continua no ar. (Configuração única no GitHub: *Settings → Pages → Source: GitHub Actions*.)
+
 ## Estrutura
 
 ```
