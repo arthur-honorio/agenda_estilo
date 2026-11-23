@@ -645,12 +645,24 @@ select:focus {
   margin-bottom: 0.875rem;
 }
 
-.mapa iframe {
-  display: block;
-  width: 100%;
-  height: 220px;
+/* Quadrado; o iframe sobe 110px para o cartão de origem/destino ficar fora do quadro. */
+.mapa-quadro {
+  --corte: 110px;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
+}
+
+.mapa-quadro iframe {
+  position: absolute;
+  top: calc(-1 * var(--corte));
+  left: 0;
+  display: block;
+  width: 100%;
+  height: calc(100% + var(--corte));
+  border: 0;
 }
 
 .resumo {
