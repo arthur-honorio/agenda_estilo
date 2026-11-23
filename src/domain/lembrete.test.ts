@@ -62,6 +62,11 @@ describe('linkGoogleAgenda', () => {
     expect(url.searchParams.get('text')).toBe('Chamar transporte – Ana')
     expect(url.searchParams.get('dates')).toBe('20261120T132000/20261120T140000')
   })
+
+  it('abre o editor de evento, que funciona no celular', () => {
+    const url = new URL(linkGoogleAgenda(lembreteDoAtendimento(ana)!))
+    expect(url.origin + url.pathname).toBe('https://calendar.google.com/calendar/r/eventedit')
+  })
 })
 
 describe('mapa', () => {

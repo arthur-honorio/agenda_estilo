@@ -48,17 +48,19 @@ function inicioEFim(l: Lembrete): [string, string] {
   return [carimbo(l.data, l.hora), carimbo(fim.data, fim.hora)]
 }
 
-/** Link que abre o Google Agenda com o evento preenchido (melhor opção no Android). */
+/**
+ * Link que abre o Google Agenda já na tela de edição do evento (melhor opção no Android).
+ * O caminho r/eventedit é o editor que se adapta ao celular; o antigo "render" abria a versão de computador.
+ */
 export function linkGoogleAgenda(l: Lembrete): string {
   const [inicio, fim] = inicioEFim(l)
   const p = new URLSearchParams({
-    action: 'TEMPLATE',
     text: l.titulo,
     dates: `${inicio}/${fim}`,
     details: l.descricao,
     location: l.local,
   })
-  return `https://calendar.google.com/calendar/render?${p.toString()}`
+  return `https://calendar.google.com/calendar/r/eventedit?${p.toString()}`
 }
 
 function escaparIcs(texto: string): string {
