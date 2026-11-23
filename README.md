@@ -75,7 +75,7 @@ No Linux/macOS, troque `.venv/Scripts/python` por `.venv/bin/python`. O PDF sai 
 ## Escopo do MVP
 
 **Must (entra agora):** RF01–RF12, ou seja, cadastro com local, linha do tempo do dia, busca,
-remarcar/desmarcar, mapa + tempo + hora do transporte, lembrete `.ics`/Google Agenda,
+remarcar/desmarcar, mapa + tempo + hora do transporte, lembrete no Google Agenda,
 valor/sinal, custo, lucro e carteira do dia.
 **Should:** RF13 (aviso de conflito), RF14 (resumos), RF15 (clientes), RF16 (% de sinal), RF20 (apagar dados).
 **Won't nesta versão:** backup, PWA com notificações, cálculo automático de rota.

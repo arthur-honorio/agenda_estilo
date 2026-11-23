@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { umAtendimento, umAtendimentoEmCasa } from './fabrica.test-utils'
-import { gerarIcs, lembreteDoAtendimento, linkGoogleAgenda } from './lembrete'
+import { lembreteDoAtendimento, linkGoogleAgenda } from './lembrete'
 import { urlMapaIncorporado, urlRotaNoGoogleMaps } from './mapa'
 
 const ana = umAtendimentoEmCasa({
@@ -26,33 +26,6 @@ describe('lembreteDoAtendimento', () => {
 
   it('não há lembrete de transporte no estúdio', () => {
     expect(lembreteDoAtendimento(umAtendimento())).toBeNull()
-  })
-})
-
-describe('gerarIcs', () => {
-  const ics = gerarIcs(lembreteDoAtendimento(ana)!, 'ana-1', new Date('2026-11-19T12:00:00Z'))
-
-  it('tem evento das 13h20 às 14h00 com alerta na hora', () => {
-    expect(ics).toContain('DTSTART:20261120T132000')
-    expect(ics).toContain('DTEND:20261120T140000')
-    expect(ics).toContain('TRIGGER:PT0M')
-    expect(ics).toContain('DTSTAMP:20261119T120000Z')
-  })
-
-  it('usa CRLF e escapa vírgulas', () => {
-    expect(ics.split('\r\n')[0]).toBe('BEGIN:VCALENDAR')
-    expect(ics.replace(/\r\n /g, '')).toContain('LOCATION:Rua das Flores\\, 10\\, Fortaleza')
-  })
-
-  it('nenhuma linha passa de 75 bytes, mesmo com acentos', () => {
-    const longo = gerarIcs(
-      { ...lembreteDoAtendimento(ana)!, descricao: 'Endereço com acentuação: ' + 'ção '.repeat(40) },
-      'x',
-    )
-    const bytes = (l: string) => new TextEncoder().encode(l).length
-    expect(Math.max(...longo.split('\r\n').map(bytes))).toBeLessThanOrEqual(75)
-    // desdobrando, o texto volta inteiro
-    expect(longo.replace(/\r\n /g, '')).toContain('ção '.repeat(40).trim())
   })
 })
 

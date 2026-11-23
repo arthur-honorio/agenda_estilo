@@ -49,7 +49,7 @@ function inicioEFim(l: Lembrete): [string, string] {
 }
 
 /**
- * Link que abre o Google Agenda já na tela de edição do evento (melhor opção no Android).
+ * Link que abre o Google Agenda já na tela de edição do evento (o mesmo no Android e no iPhone).
  * O caminho r/eventedit é o editor que se adapta ao celular; o antigo "render" abria a versão de computador.
  */
 export function linkGoogleAgenda(l: Lembrete): string {
@@ -61,63 +61,4 @@ export function linkGoogleAgenda(l: Lembrete): string {
     location: l.local,
   })
   return `https://calendar.google.com/calendar/r/eventedit?${p.toString()}`
-}
-
-function escaparIcs(texto: string): string {
-  return texto.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
-}
-
-const utf8 = new TextEncoder()
-
-/**
- * Quebra linhas com mais de 75 bytes, como pede a RFC 5545 (a continuação começa
- * com espaço). Conta bytes UTF-8, porque letras acentuadas ocupam 2.
- */
-function dobrar(linha: string): string {
-  const partes: string[] = []
-  let atual = ''
-  let bytes = 0
-  for (const letra of linha) {
-    const tamanho = utf8.encode(letra).length
-    // 75 na primeira linha; 74 nas seguintes, por causa do espaço inicial
-    if (bytes + tamanho > (partes.length === 0 ? 75 : 74)) {
-      partes.push(atual)
-      atual = ''
-      bytes = 0
-    }
-    atual += letra
-    bytes += tamanho
-  }
-  partes.push(atual)
-  return partes.join('\r\n ')
-}
-
-/** Arquivo .ics com alerta na hora do evento (melhor opção no iPhone). */
-export function gerarIcs(l: Lembrete, uid: string, agora: Date = new Date()): string {
-  const [inicio, fim] = inicioEFim(l)
-  const dtstamp = agora.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
-  return [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Agenda Estilo//MVP//PT-BR',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}@agenda-estilo`,
-    `DTSTAMP:${dtstamp}`,
-    `DTSTART:${inicio}`,
-    `DTEND:${fim}`,
-    `SUMMARY:${escaparIcs(l.titulo)}`,
-    `DESCRIPTION:${escaparIcs(l.descricao)}`,
-    `LOCATION:${escaparIcs(l.local)}`,
-    'BEGIN:VALARM',
-    'ACTION:DISPLAY',
-    `DESCRIPTION:${escaparIcs(l.titulo)}`,
-    'TRIGGER:PT0M',
-    'END:VALARM',
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ]
-    .map(dobrar)
-    .join('\r\n')
 }
