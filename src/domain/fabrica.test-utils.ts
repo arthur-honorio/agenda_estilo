@@ -17,7 +17,7 @@ export function umAtendimento(parcial: Partial<Atendimento> = {}): Atendimento {
   }
 }
 
-/** Atendimento a domicílio; `tempoMin` e `folgaMin` controlam o deslocamento. */
+/** Atendimento em domicílio; `tempoMin` e `folgaMin` controlam o deslocamento. */
 export function umAtendimentoEmCasa(
   parcial: Partial<Atendimento> & { tempoMin?: number; folgaMin?: number; custo?: number } = {},
 ): Atendimento {

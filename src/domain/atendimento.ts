@@ -34,7 +34,7 @@ export interface Atendimento {
   local: Local
   /** Obrigatório quando o local é domicílio. */
   endereco?: string
-  /** Só existe para atendimentos a domicílio. */
+  /** Só existe para atendimentos em domicílio. */
   deslocamento?: Deslocamento
   /** Valor do serviço em centavos (obrigatório). */
   valor: number

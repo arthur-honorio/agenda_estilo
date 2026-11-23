@@ -1,7 +1,7 @@
 # Agenda Estilo — F108 (UNIFOR) · Equipe 31
 
 Site **mobile first** para profissionais autônomos de beleza e estética (manicures, maquiadoras,
-barbeiros, esteticistas…) que atendem a domicílio. Junta três coisas em um lugar só:
+barbeiros, esteticistas…) que atendem em domicílio. Junta três coisas em um lugar só:
 
 1. **Agendamento**: cliente, serviço, data, início, duração e local (estúdio ou domicílio).
 2. **Deslocamento**: o mapa mostra a rota, a profissional digita o tempo e o site calcula

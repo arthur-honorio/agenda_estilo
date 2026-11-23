@@ -42,7 +42,7 @@ describe('horaDeChamarDoAtendimento', () => {
     status: 'agendado',
   }
 
-  it('calcula para atendimento a domicílio', () => {
+  it('calcula para atendimento em domicílio', () => {
     expect(horaDeChamarDoAtendimento(base)?.hora).toBe('13:20')
   })
 
