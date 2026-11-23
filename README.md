@@ -1,4 +1,4 @@
-# Agenda Estilo — F108 (UNIFOR) · Grupo 31
+# Agenda Estilo — F108 (UNIFOR) · Equipe 31
 
 Site **mobile first** para profissionais autônomos de beleza e estética (manicures, maquiadoras,
 barbeiros, esteticistas…) que atendem a domicílio. Junta três coisas em um lugar só:
@@ -48,29 +48,10 @@ src/
   pages/         uma tela por arquivo: Agenda, Novo atendimento, Carteira, Meus dados
   components/    peças reutilizáveis (Layout com a navegação inferior)
   styles/        CSS global (cores, acessibilidade)
-docs/
-  proposta/      enunciado do trabalho
-  pesquisa/      registro da entrevista e prints do brainstorming (telefones ocultos)
-  relatorio/     relatório em PDF e os scripts que o geram
-  HANDOFF_...md  contexto completo do projeto (decisões, requisitos, cenário de teste)
 ```
 
 Convenções do código: datas em `AAAA-MM-DD`, horas em `HH:MM` e **dinheiro em centavos**
 (inteiro). Use `formatarReais` e `paraCentavos` de `src/domain/dinheiro.ts` para exibir e ler valores.
-
-## Relatório (PDF)
-
-O relatório é gerado por script Python com ReportLab. As fontes DejaVu já estão em `docs/relatorio/fonts/`.
-
-```bash
-python -m venv .venv
-.venv/Scripts/python -m pip install -r docs/relatorio/scripts/requirements.txt   # Windows
-.venv/Scripts/python docs/relatorio/scripts/gerar_relatorio.py
-```
-
-No Linux/macOS, troque `.venv/Scripts/python` por `.venv/bin/python`. O PDF sai em
-`docs/relatorio/Agenda_Estilo_F108_v<VERSAO>.pdf`. Antes de gerar uma versão nova, aumente
-`VERSAO` no topo de `gerar_relatorio.py`.
 
 ## Escopo do MVP
 
@@ -80,7 +61,7 @@ valor/sinal, custo, lucro e carteira do dia.
 **Should:** RF13 (aviso de conflito), RF14 (resumos), RF15 (clientes), RF16 (% de sinal), RF20 (apagar dados).
 **Won't nesta versão:** backup, PWA com notificações, cálculo automático de rota.
 
-A lista completa de requisitos e histórias de usuário (HU01–HU09) está no relatório em `docs/relatorio/`.
+A lista completa de requisitos e histórias de usuário (HU01–HU09) está no relatório do trabalho.
 
 ## Cenário do teste com usuárias
 
@@ -94,4 +75,4 @@ O site precisa dar estes resultados (estão fixados nos testes de `src/domain/`)
 Arthur Honorio do Carmo (PO) · Joel da Silva de Oliveira · Matheus Domingues Sales ·
 Luana Magalhães de Souza Alves · Matheus Sousa de Carvalho · Thayná Nascimento Albano da Silva
 
-Quadro Kanban: <https://trello.com/b/oAdxOXXC/agenda-bela-f108-grupo-31>
+Quadro Kanban: <https://trello.com/b/oAdxOXXC>

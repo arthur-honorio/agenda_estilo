@@ -22,7 +22,7 @@ __pycache__/
 .venv/
 venv/
 
-# Pacotes recebidos — o conteúdo já está extraído em docs/
+# Pacotes recebidos
 *.zip
 
 # Editor e sistema operacional
